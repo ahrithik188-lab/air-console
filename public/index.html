@@ -11,6 +11,7 @@
     content="width=device-width, initial-scale=1.0">
 
 </head>
+
 <body class="pc-body">
 
 <h1 class="title">
@@ -79,7 +80,7 @@ style="display:none;">
 
 </div>
 
-<!-- GAME MENU -->
+<!-- MENU -->
 
 <div
 id="menuScreen"
@@ -135,6 +136,12 @@ Math.floor(
 document.getElementById("roomCode")
 .innerText = room;
 
+// SAVE ROOM
+
+localStorage.setItem("room", room);
+
+// JOIN ROOM
+
 socket.emit("join-room", room);
 
 // PLAYER COUNT
@@ -159,7 +166,7 @@ function startSetup(){
 
 }
 
-// BUTTON TEST
+// TEST BUTTONS
 
 let tested = {
 
@@ -181,7 +188,7 @@ document.querySelectorAll(".menu-item");
 
 socket.on("controller-update", (dir) => {
 
-    // TEST BUTTONS
+    // TEST
 
     if(dir === "left"){
 
