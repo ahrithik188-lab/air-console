@@ -1,22 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
+
     <title>Air Console</title>
+
     <link rel="stylesheet" href="style.css">
+
 </head>
-<body>
+<body class="main-body">
 
-<h1>🎮 AIR CONSOLE</h1>
+<div class="left">
 
-<h2>ROOM: HRI123</h2>
+    <h1 class="logo">
+        🎮 AIR CONSOLE
+    </h1>
 
-<h3 id="players">Players: 0</h3>
+    <div class="screen-box">
 
-<div class="screen">
-    <div id="box"></div>
+        <div id="box"></div>
+
+    </div>
+
+</div>
+
+<div class="right">
+
+    <h1>
+        Connect your phones as controllers
+    </h1>
+
+    <h2>
+        ROOM CODE
+    </h2>
+
+    <div class="room-code" id="roomCode">
+
+    </div>
+
+    <h3 id="players">
+        Players: 0
+    </h3>
+
 </div>
 
 <script src="/socket.io/socket.io.js"></script>
+
 <script src="script.js"></script>
 
 </body>
