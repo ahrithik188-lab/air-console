@@ -2,31 +2,46 @@
 <html>
 <head>
 
-    <title>Join Room</title>
+<title>Controller</title>
 
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
 
-    <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0">
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 </head>
-<body class="join-body">
+<body class="controller-body">
 
-<div class="join-box">
+<h1>
+🎮 CONTROLLER
+</h1>
 
-    <h1>
-        🎮 AIR CONSOLE
-    </h1>
+<div class="controller">
 
-    <input
-    type="text"
-    id="roomInput"
-    placeholder="ENTER ROOM CODE">
+    <div class="dpad">
 
-    <button onclick="joinRoom()">
-        JOIN
-    </button>
+        <button onclick="move('up')">
+            ⬆️
+        </button>
+
+        <div class="middle-row">
+
+            <button onclick="move('left')">
+                ⬅️
+            </button>
+
+            <button onclick="move('right')">
+                ➡️
+            </button>
+
+        </div>
+
+        <button onclick="move('down')">
+            ⬇️
+        </button>
+
+    </div>
 
 </div>
 
@@ -36,18 +51,22 @@
 
 const socket = io();
 
-function joinRoom(){
+const room = "HRI123";
 
-    const room =
-    document.getElementById("roomInput").value;
+socket.emit("join-room", room);
 
-    if(room.length > 0){
+function move(direction){
 
-        localStorage.setItem("room", room);
+    socket.emit(
+        "controller-move",
+        direction
+    );
 
-        socket.emit("join-room", room);
+    // PHONE VIBRATION
 
-        window.location.href = "games.html";
+    if(navigator.vibrate){
+
+        navigator.vibrate(50);
 
     }
 
