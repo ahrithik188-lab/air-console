@@ -6,17 +6,36 @@ const http = require("http").createServer(app);
 
 const io = require("socket.io")(http);
 
+// SERVE ALL FILES
+
 app.use(express.static(__dirname));
+
+// HOME PAGE
+
+app.get("/", (req, res) => {
+
+    res.sendFile(__dirname + "/index.html");
+
+});
+
+// SOCKET CONNECTION
 
 io.on("connection", (socket) => {
 
-    console.log("User Connected");
+    console.log("✅ User Connected");
 
     // JOIN ROOM
 
     socket.on("join-room", (room) => {
 
         socket.join(room);
+
+        console.log(
+            "🎮 Joined Room:",
+            room
+        );
+
+        // PLAYER COUNT
 
         const clients =
         io.sockets.adapter.rooms.get(room);
@@ -29,14 +48,9 @@ io.on("connection", (socket) => {
             count
         );
 
-        console.log(
-            "Joined Room:",
-            room
-        );
-
     });
 
-    // CONTROLLER INPUT
+    // CONTROLLER MOVEMENT
 
     socket.on(
         "controller-move",
@@ -50,18 +64,28 @@ io.on("connection", (socket) => {
         }
     );
 
+    // DISCONNECT
+
     socket.on("disconnect", () => {
 
-        console.log("User Disconnected");
+        console.log(
+            "❌ User Disconnected"
+        );
 
     });
 
 });
 
-http.listen(3000, () => {
+// PORT
+
+const PORT =
+process.env.PORT || 3000;
+
+http.listen(PORT, () => {
 
     console.log(
-        "Server running on port 3000"
+        "🚀 Server Running On Port " +
+        PORT
     );
 
 });
