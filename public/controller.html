@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Controller</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body class="controller-body">
+
+<!-- JOIN SCREEN -->
+
+<div id="joinScreen">
+
+    <h1>
+    🎮 CONNECT CONTROLLER
+    </h1>
+
+    <input
+    type="text"
+    id="roomInput"
+    placeholder="ENTER ROOM CODE"
+    maxlength="6">
+
+    <br><br>
+
+    <button
+    class="join-btn"
+    onclick="joinRoom()">
+
+        CONNECT
+
+    </button>
+
+</div>
+
+<!-- CONTROLLER SCREEN -->
+
+<div
+id="controllerScreen"
+style="display:none;">
+
+    <h1>
+    🎮 CONTROLLER
+    </h1>
+
+    <div class="controller">
+
+        <div class="dpad">
+
+            <button onclick="move('up')">
+                ⬆️
+            </button>
+
+            <div class="middle-row">
+
+                <button onclick="move('left')">
+                    ⬅️
+                </button>
+
+                <button onclick="move('right')">
+                    ➡️
+                </button>
+
+            </div>
+
+            <button onclick="move('down')">
+                ⬇️
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+
+<script>
+
+const socket = io();
+
+let room = "";
+
+// JOIN ROOM
+
+function joinRoom(){
+
+    room =
+    document.getElementById("roomInput")
+    .value.toUpperCase();
+
+    if(room.length !== 6){
+
+        alert("ENTER VALID 6 DIGIT ROOM CODE");
+
+        return;
+
+    }
+
+    socket.emit("join-room", room);
+
+    localStorage.setItem("room", room);
+
+    document.getElementById("joinScreen")
+    .style.display = "none";
+
+    document.getElementById("controllerScreen")
+    .style.display = "block";
+
+}
+
+// SEND BUTTON INPUT
+
+function move(direction){
+
+    socket.emit(
+        "controller-move",
+        {
+            room: room,
+            direction: direction
+        }
+    );
+
+    // PHONE VIBRATION
+
+    if(navigator.vibrate){
+
+        navigator.vibrate(50);
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
