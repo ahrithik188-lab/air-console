@@ -1,34 +1,195 @@
 body{
-    background: linear-gradient(135deg,#2563eb,#22d3ee);
-    color:white;
-    text-align:center;
+    margin:0;
     font-family:Arial;
 }
 
-.screen{
-    width:500px;
-    height:300px;
+/* MAIN SCREEN */
+
+.main-body{
+
+    display:flex;
+
+    height:100vh;
+
+    background:
+    linear-gradient(135deg,#2563eb,#22d3ee);
+
+}
+
+.left{
+
+    width:50%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+.right{
+
+    width:50%;
+
     background:#1f1f28;
-    margin:auto;
-    position:relative;
+
+    color:white;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+.logo{
+
+    color:white;
+
+}
+
+.screen-box{
+
+    width:500px;
+
+    height:300px;
+
+    background:#111827;
+
     border-radius:20px;
-    overflow:hidden;
+
+    position:relative;
+
 }
 
 #box{
+
     width:60px;
+
     height:60px;
+
     background:#B8FF00;
-    position:absolute;
-    left:220px;
-    top:120px;
+
     border-radius:15px;
+
+    position:absolute;
+
+    left:220px;
+
+    top:120px;
+
 }
 
-button{
+.room-code{
+
+    font-size:50px;
+
+    background:black;
+
+    color:#00ff99;
+
+    padding:20px 40px;
+
+    border-radius:15px;
+
+    margin:20px;
+
+}
+
+/* JOIN PAGE */
+
+.join-body{
+
+    background:#111827;
+
+    color:white;
+
+    height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.join-box{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+.join-box input{
+
     padding:20px;
-    margin:10px;
-    font-size:30px;
+
+    font-size:25px;
+
     border:none;
+
+    border-radius:15px;
+
+    text-align:center;
+
+}
+
+.join-box button{
+
+    padding:20px;
+
+    font-size:25px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:#B8FF00;
+
+}
+
+/* GAMES */
+
+.games-body{
+
+    background:#0f172a;
+
+    color:white;
+
+    text-align:center;
+
+}
+
+.games-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:20px;
+
+    padding:30px;
+
+}
+
+.game-card{
+
+    background:#1e293b;
+
+    padding:50px;
+
     border-radius:20px;
+
+    font-size:30px;
+
 }
